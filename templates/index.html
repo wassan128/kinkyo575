@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>近況圧縮575</title>
+	<link rel="stylesheet" href="/static/css/style.css"/>
+	<script src="/static/js/page.js"></script>
+</head>
+<body>
+	<header>
+		<h1>近況圧縮575</h1>
+	</header>
+	<main>
+	{% if senryus == None %}
+		<p>
+			<a href="{{ url_for('auth') }}">Twitterアカウントでログイン</a>
+		</p>
+	{% else %}
+		<article>
+			<table>
+				{% for i, senryu in senryus %}
+				<tr>
+					<td id="sen{{ i }}">{{ senryu }}</td>
+					<td><button class="btn-post">tweet</button></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</article>
+	{% endif %}
+</body>
+</html>
+
