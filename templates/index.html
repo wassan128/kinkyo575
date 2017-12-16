@@ -7,25 +7,32 @@
 	<script src="/static/js/page.js"></script>
 </head>
 <body>
+	{% if islogin == False %}
 	<header>
-		<h1>近況圧縮575</h1>
+		<div id="welcome-box" class="clearfix">
+			<div id="w-left">
+				<img src="/static/image/logo_no_bg.png" alt="近況圧縮575"/>
+			</div>
+			<div id="w-right">
+				<button>what's this</button>
+				<button><a href="{{ url_for('auth') }}">Twitterアカウントでログイン</a></button>
+			</div>
+		</div>
 	</header>
 	<main>
-	{% if senryus == None %}
-		<p>
-			<a href="{{ url_for('auth') }}">Twitterアカウントでログイン</a>
-		</p>
+	</main>
 	{% else %}
+	<header>
+		<h1 class="bef-login">
+			<img src="/static/image/logo_no_bg.png" alt="近況圧縮575"/>
+		</h1>
+	</header>
+	<main>
 		<article>
-			<table>
-				{% for i, senryu in senryus %}
-				<tr>
-					<td id="sen{{ i }}">{{ senryu }}</td>
-					<td><button class="btn-post">tweet</button></td>
-				</tr>
-				{% endfor %}
-			</table>
+			<p id="msg-pending">575を生成しています...</p>
+			<table></table>
 		</article>
+	</main>
 	{% endif %}
 </body>
 </html>

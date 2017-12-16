@@ -13,6 +13,12 @@ app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
 
 
+def is_login():
+    if session.get("is_login"):
+        return True
+    else:
+        return False
+
 def get_interface():
     access_token = session.get("access_token")
     access_token_secret = session.get("access_token_secret")
@@ -33,17 +39,15 @@ def get_senryu():
     api = get_interface()
     if api:
         twit = Tweets(api)
-        data = twit.get(30)
+        data = twit.get(512)
         senryu = generate_575(data)
     return senryu
     
 
 @app.route("/")
 def index():
-    senryu = get_senryu()
-    if senryu:
-        senryu = enumerate(senryu)
-    return render_template("index.html", senryus=senryu)
+    islogin = is_login()
+    return render_template("index.html", islogin=islogin)
  
 @app.route("/auth")
 def auth():
@@ -66,6 +70,7 @@ def callback():
             auth.get_access_token(verifier)
             session["access_token"] = auth.access_token
             session["access_token_secret"] = auth.access_token_secret
+            session["is_login"] = True
             return redirect("/")
         else:
             print("[*] No request token")

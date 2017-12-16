@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+.clearfix:after {
+	display: block;
+	content: " ";
+	clear: both;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -9,27 +15,38 @@
 }
 
 header {
-	padding: 1em;
-}
-	header h1 {
+	width: 100%;
+}	
+	#welcome-box {
+		width: 80%;
+		max-width: 777px;
+		height: 444px;
+		box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		margin: auto;
+		padding: 1em;
+	}
+		#w-left {
+			float: left;
+		}
+		#w-right {
+			float: right;
+		}
+		#w-left img {
+			width: 300px;
+		}
+		#w-right button {
+			border: none;
+			width: 100px;
+			padding: 1em;
+		}
+	header h1.aft-login {
 		font-size: 15pt;
 	}
 
-table {
-	border: none;
-	border-collapse: collapse;
-	width: 100%;
-}
-	tr:nth-child(2n+1) {
-		background: #EEE;
-	}
-		td {
-			padding: 0.7em 1em;
-		}
-		td:nth-child(2n) {
-			text-align: right;
-		}
-
-button {
-	padding: 0.3em;
+main {
 }
