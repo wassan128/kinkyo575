@@ -1,0 +1,155 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: nyashi;
+	src: url("../font/Nyashi.ttf") format("truetype");
+}
+
+.clearfix:after {
+	display: block;
+	content: " ";
+	clear: both;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-family:  nyashi, Meiryo UI;
+	font-size: 10pt;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url("/static/image/bg.png");
+}
+
+	#modal-wrap {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(23, 114, 83, 0.7);
+		z-index: 9999;
+		transition: 0.5s;
+		display: none;
+	}
+	#modal-cont {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		margin: auto;
+		width: 400px;
+		height: 300px;
+		background: rgba(255, 255, 255, 0.8);
+		box-shadow: 0 0 5px 3px rgba(23, 114, 83, 0.5);
+	}
+		#modal-cont * {
+			padding: 1em;
+		}
+		#modal-cont p {
+			background: #057577;
+			color: #FFF;
+		}
+		#modal-cont h3 {
+			margin: 1em auto;
+			padding: 1.5em;
+			line-height: 1.5em;
+			writing-mode: vertical-rl;
+			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+			background: url("/static/image/card.png");
+			font-size: 12pt;
+		}
+		#modal-cont form {
+			text-align: center;
+			width: 100%;
+			position: absolute;
+			bottom: 1em;
+		}
+			#modal-cont button {
+				width: 30%;
+				border: none;
+				color: #FFF;
+				padding: 0.8em;
+				outline: none;
+				cursor: pointer;
+				transition: 0.3s;
+			}
+			#modal-cont button:hover {
+				opacity: 0.5;
+			}
+			#confirm-ok {
+				background: #057577;
+			}
+			#confirm-ng {
+				background: #BC4E4E;
+			}
+
+	header, main {
+		z-index: 1;
+	}
+
+	#welcome-box button {
+		border: none;
+		background: #057577;
+		color: #FFF;
+		transition: 0.5s;
+		cursor: pointer;
+		outline: none;
+	}
+
+	header {
+		background: rgba(5, 117, 119, 0.6);
+		box-shadow: 0 0 5px 3px rgba(23, 114, 83, 0.3);
+		padding: 0.5em 0;
+	}
+		header * {
+			color: #FFF;
+		}
+		header img {
+			float: left;
+		}
+		header h1 {
+			text-indent: 0.5em;
+		}
+			#username {
+				font-weight: bold;
+			}
+
+	.no-senryu {
+		display: none;
+		padding: 3em 0;
+	}
+		.no-senryu p {
+			font-size: 20pt;
+			color: #057577;
+			text-align: center;
+		}
+
+#msg-pending {
+	text-align: center;
+	font-size: 15pt;
+	color: #057577;
+	font-weight: bold;
+	padding: 1em;
+}
+#msg-status {
+	display: none;
+	background: rgba(23, 114, 83, 0.7);
+	padding: 1em;
+	color: #FFF;
+	position: fixed;
+	right: 1em;
+	border-radius: 5px;
+}
+
+#copyright {
+	color: #057577;
+	padding: 1em;
+	text-align: center;
+}

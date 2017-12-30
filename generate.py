@@ -44,7 +44,7 @@ def generate_575(data):
             p1 = words["5"][random.randint(0, len(words["5"]) - 1)]
             p2 = words["7"][random.randint(0, len(words["7"]) - 1)]
             p3 = words["5"][random.randint(0, len(words["5"]) - 1)]
-            senryu = " ".join([p1, p2, p3])
+            senryu = "\n".join([p1, "　" + p2, "　　" + p3])
             print("#{}: {}".format(i, senryu))
             result.append(senryu)
 

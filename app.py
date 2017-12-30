@@ -15,7 +15,11 @@ app.secret_key = os.environ["SECRET_KEY"]
 
 def is_login():
     if session.get("is_login"):
-        return True
+        api = get_interface()
+        name = False
+        if api:
+            name = api.me().name
+        return name
     else:
         return False
 
@@ -39,7 +43,7 @@ def get_senryu():
     api = get_interface()
     if api:
         twit = Tweets(api)
-        data = twit.get(512)
+        data = twit.get()
         senryu = generate_575(data)
     return senryu
     
@@ -47,7 +51,7 @@ def get_senryu():
 @app.route("/")
 def index():
     islogin = is_login()
-    return render_template("index.html", islogin=islogin)
+    return render_template("index.html", user=islogin)
  
 @app.route("/auth")
 def auth():
@@ -87,11 +91,12 @@ def senryu():
 def post():
     text = request.data.decode("utf-8")
     print("receive: {}".format(text))
-   
+
     api = get_interface()
     if api:
         twit = Tweets(api)
-        res = twit.post("{}\n#近況圧縮575".format(text))
+        res = twit.post("{}\n#近況圧縮575".format(text.replace("\n", " ").replace("　", "")))
+        print(res)
 
     return jsonify({"res": res})
 

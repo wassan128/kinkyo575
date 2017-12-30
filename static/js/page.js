@@ -1,43 +1,39 @@
 "use strict";
 
 const HOST = "http://localhost:5000";
+const OPEN = 1;
+const CLOSE = 0;
 
-const tweet = (text) => {
-	const url = `${HOST}/post`;
-	fetch(url, {
-		method: "POST",
-		body: text,
-		credentials: "include"
-	}).then(response => {
-		return response.json();
-	}).then(json => {
-		console.log(json);
+const sleep = (msec) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(resolve, msec);
 	});
 };
-
 
 const delete_msg = (kind) => {
 	const msg = document.getElementById(kind);
 	msg.parentNode.removeChild(msg);
 };
 
+const append_msg = (kind, txt) => {
+	const msg = document.getElementById(kind);
+	msg.innerText = txt;
+	msg.style.display = "block";
+
+	sleep(3000).then(() => {
+		msg.style.display = "none";
+	});
+}
+
 const put_senryus = (senryus) => {
-	const table = document.querySelector("table");
+	const wrap = document.querySelector(".wrapper");
 	const append_senryu = (senryu, n) => {
-		const row = document.createElement("tr");
-		const text = document.createElement("td");
+		const text = document.createElement("p");
 		text.innerText = senryu;
 		text.setAttribute("id", `sen${n}`);
+		text.setAttribute("class", "cards btn-post");
 
-		const post = document.createElement("td");
-		const button = document.createElement("button");
-		button.innerText = "tweet";
-		button.setAttribute("class", "btn-post");
-		
-		post.appendChild(button);
-		row.appendChild(text);
-		row.appendChild(post);
-		table.appendChild(row);
+		wrap.appendChild(text);
 	};
 
 	let i = 0;
@@ -50,21 +46,56 @@ const enable_post_button = () => {
 	// for tweet button
 	const btns = document.getElementsByClassName("btn-post");
 	const fn_btn = (e) => {
-		// td->button
-		const tag = e.currentTarget;
-		// td(tweet content)
-		const text = tag.parentElement.previousElementSibling.innerText;
+		const text = e.currentTarget.innerText;
+		const h3 = document.getElementById("conf-txt");
+		h3.innerText = text;
 
-		if (confirm(`「${text}」をツイートしますか?`)) {
-			tweet(text);
-		}
+		set_modal(OPEN);
 	};
 	for (const btn of btns) {
 		btn.addEventListener("click", fn_btn, false);
 	}
 };
 
-//TODO: ログイン前はリクエストを飛ばさない
+const set_modal = (op) => {
+	const wnd = document.getElementById("modal-wrap");
+	if (op == CLOSE) {
+		wnd.style.display = "none";
+	} else {
+		wnd.style.display = "block";
+	}
+};
+
+const tweet = (text) => {
+	const url = `${HOST}/post`;
+	fetch(url, {
+		method: "POST",
+		body: text,
+		credentials: "include"
+	}).then(response => {
+		return response.json();
+	}).then(json => {
+		if (json["res"] == "ok") {
+			append_msg("msg-status", "ツイートしました。");
+		} else {
+			append_msg("msg-status", "ツイートに失敗しました。")
+		}
+	});
+};
+
+const en_cont = () => {
+	const b_yes = document.getElementById("confirm-ok");
+	b_yes.addEventListener("click", () => {
+		const text = document.getElementById("conf-txt").innerText;
+		tweet(text);
+		set_modal(CLOSE);
+	});
+	const b_no = document.getElementById("confirm-ng");
+	b_no.addEventListener("click", () => {
+		set_modal(CLOSE);
+	});
+};
+
 const get_senryu = () => {
 	const url = `${HOST}/senryu`;
 	fetch(url, {
@@ -73,13 +104,20 @@ const get_senryu = () => {
 	.then(response => response.json())
 	.then(senryus => {
 		if (senryus) {
-			put_senryus(senryus);
-			enable_post_button();
 			delete_msg("msg-pending");
+			if (senryus.length !== 0) {
+				put_senryus(senryus);
+				enable_post_button();
+			} else {
+				document.querySelector(".no-senryu").style.display = "block";
+			}
+		} else {
+			document.querySelector(".no-senryu").style.display = "block";
 		}
 	});
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
+	en_cont();
 	get_senryu();
 });
