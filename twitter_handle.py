@@ -8,7 +8,7 @@ class Tweets():
         self.api = api
         self.screen_name = api.me().screen_name
 
-    def get(self, demand=256):
+    def get(self, demand=128):
         cnt = 0
         data = []
         exclude_ptn = re.compile(r"^[(?:RT)@]")
