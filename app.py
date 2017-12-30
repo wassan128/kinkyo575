@@ -48,11 +48,8 @@ def get_senryu():
 
 @app.route("/")
 def index():
-    """
     islogin = is_login()
     return render_template("index.html", user=islogin)
-    """
-    return "hoge"
  
 @app.route("/auth")
 def auth():
