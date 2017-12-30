@@ -2,6 +2,7 @@ certifi==2017.11.5
 chardet==3.0.4
 click==6.7
 Flask==0.12.2
+foreman==0.9.7
 gunicorn==19.7.1
 httplib2==0.10.3
 idna==2.6
@@ -12,6 +13,7 @@ MarkupSafe==1.0
 oauth2==1.9.0.post1
 oauthlib==2.0.6
 requests==2.18.4
+requests-futures==0.9.7
 requests-oauthlib==0.8.0
 six==1.11.0
 tweepy==3.5.0
