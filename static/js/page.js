@@ -1,6 +1,7 @@
 "use strict";
 
-const HOST = "http://localhost:5000";
+//const HOST = "http://localhost:5000";
+const HOST = "https://kinkyo575.herokuapp.com";
 const OPEN = 1;
 const CLOSE = 0;
 
