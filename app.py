@@ -110,5 +110,4 @@ def error_404(error):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.debug = True
     app.run(port=port)
