@@ -32,9 +32,6 @@ def get_interface():
         auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
-        print("[*] Welcome, {}".format(api.me().screen_name))
-    else:
-        print("[*] No access token")
 
     return api
 
@@ -77,7 +74,6 @@ def callback():
             session["is_login"] = True
             return redirect("/")
         else:
-            print("[*] No request token")
             return redirect("/auth")
     except:
         abort(401)
@@ -90,13 +86,11 @@ def senryu():
 @app.route("/post", methods=["POST"])
 def post():
     text = request.data.decode("utf-8")
-    print("receive: {}".format(text))
 
     api = get_interface()
     if api:
         twit = Tweets(api)
         res = twit.post("{}\n#近況圧縮575".format(text.replace("\n", " ").replace("　", "")))
-        print(res)
 
     return jsonify({"res": res})
 
@@ -114,5 +108,6 @@ def error_404(error):
     return "Error - 404"
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
+    port = int(os.environ.get("PORT", 5000))
+    app.debug = True
+    app.run(port=port)

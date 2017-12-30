@@ -36,8 +36,6 @@ def generate_575(data):
                 elif word_cat not in words["7"] and len(ruby) + len(ruby_next) == 7:
                     words["7"].append(word_cat)
 
-    print(words)
-
     result = []
     if words["5"] and words["7"]:
         for i in range(30):
@@ -45,7 +43,6 @@ def generate_575(data):
             p2 = words["7"][random.randint(0, len(words["7"]) - 1)]
             p3 = words["5"][random.randint(0, len(words["5"]) - 1)]
             senryu = "\n".join([p1, "　" + p2, "　　" + p3])
-            print("#{}: {}".format(i, senryu))
             result.append(senryu)
 
     return result
