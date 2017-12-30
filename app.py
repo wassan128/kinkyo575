@@ -7,7 +7,8 @@ from generate import *
 
 CONSUMER_KEY = os.environ["CONSUMER_KEY"]
 CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
-URL_CALLBACK = "http://localhost:5000/callback"
+# URL_CALLBACK = "http://localhost:5000/callback"
+URL_CALLBACK = "https://kinkyo575.herokuapp.com/callback"
 
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
