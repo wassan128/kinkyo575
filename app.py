@@ -91,7 +91,7 @@ def post():
     api = get_interface()
     if api:
         twit = Tweets(api)
-        res = twit.post("{}\n#近況圧縮575".format(text.replace("\n", " ").replace("　", "")))
+        res = twit.post("{}\n#近況圧縮575 https://kinkyo575.herokuapp.com/".format(text.replace("\n", " ").replace("　", "")))
 
     return jsonify({"res": res})
 
