@@ -7,8 +7,9 @@ from generate import *
 
 CONSUMER_KEY = os.environ["CONSUMER_KEY"]
 CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
-# URL_CALLBACK = "http://localhost:5000/callback"
-URL_CALLBACK = "https://kinkyo575.herokuapp.com/callback"
+# HOST = "http://localhost:5000"
+HOST = "https://kinkyo575.herokuapp.com"
+URL_CALLBACK = "{}/callback".format(HOST)
 
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
@@ -91,7 +92,7 @@ def post():
     api = get_interface()
     if api:
         twit = Tweets(api)
-        res = twit.post("{}\n#近況圧縮575 https://kinkyo575.herokuapp.com/".format(text.replace("\n", " ").replace("　", "")))
+        res = twit.post("{}\n#近況圧縮575 {}".format(text.replace("\n", " ").replace("　", ""), HOST))
 
     return jsonify({"res": res})
 
