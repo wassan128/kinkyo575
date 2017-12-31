@@ -84,7 +84,7 @@ const tweet = (text) => {
 	});
 };
 
-const en_cont = () => {
+const enable_controls = () => {
 	const b_yes = document.getElementById("confirm-ok");
 	b_yes.addEventListener("click", () => {
 		const text = document.getElementById("conf-txt").innerText;
@@ -109,6 +109,7 @@ const get_senryu = () => {
 			if (senryus.length !== 0) {
 				put_senryus(senryus);
 				enable_post_button();
+				enable_controls();
 			} else {
 				document.querySelector(".no-senryu").style.display = "block";
 			}
@@ -119,6 +120,5 @@ const get_senryu = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-	en_cont();
 	get_senryu();
 });
