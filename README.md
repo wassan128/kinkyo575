@@ -1,6 +1,6 @@
 # 近況圧縮575
 
-![近況圧縮575ログイン画面](https://raw.githubusercontent.com/wassan128/kinkyo575/images/s1.png)
+<img src="https://raw.githubusercontent.com/wassan128/kinkyo575/images/s1.png" alt="近況圧縮575ログイン画面" width="500px"/>
 
 ## これは
 * ツイートから575を生成するTwitter連携アプリです。
@@ -19,7 +19,7 @@
 * 気に入った575はクリック、確認ウィンドウで「はい」を選択することでツイートできます。
 * 勝手にツイートされることはありませんのでご安心ください。
 
-![ツイート確認ウィンドウ](https://raw.githubusercontent.com/wassan128/kinkyo575/images/s2.png)
+<img src="https://raw.githubusercontent.com/wassan128/kinkyo575/images/s2.png" alt="ツイート確認ウィンドウ" width="500px"/>
 
 # ライセンス
 MIT
