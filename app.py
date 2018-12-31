@@ -7,7 +7,7 @@ from generate import *
 
 CONSUMER_KEY = os.environ["CONSUMER_KEY"]
 CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
-# HOST = "http://localhost:5000"
+#HOST = "http://localhost:5000"
 HOST = "https://kinkyo575.herokuapp.com"
 URL_CALLBACK = "{}/callback".format(HOST)
 
