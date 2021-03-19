@@ -8,7 +8,7 @@ httplib2==0.18.0
 idna==2.6
 itsdangerous==0.24
 Janome==0.3.6
-Jinja2==2.10.1
+Jinja2==2.11.3
 MarkupSafe==1.0
 oauth2==1.9.0.post1
 oauthlib==2.0.6
